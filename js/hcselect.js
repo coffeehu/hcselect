@@ -153,6 +153,7 @@ Hcselect.prototype.initOption = function(option){
     option.iconFn = option.iconFn || function(){};
     option.itemFn = option.itemFn || function(){};
     option.up = option.up || false;
+    option.value = option.value || '';
     this.option = option;
     this.el = document.getElementById(option.id);
 }
@@ -185,7 +186,7 @@ Hcselect.prototype.views = function(){
     var icon = this.option.icon;
     if(icon){
         if(imgRe.test(icon)){ // 图片地址
-            html = '<div class="hcselector-wrapper"><input '+readonly+' type="text" name="hcselector-input" class="hcselector-input"><img src="'+icon+'" class="hcselector-icon"></div>';
+            html = '<div class="hcselector-wrapper"><input '+readonly+' value='+this.option.value+' type="text" name="hcselector-input" class="hcselector-input"><img src="'+icon+'" class="hcselector-icon"></div>';
         }else if(htmlRe.test(icon)){ // html代码
             if(icon.match(/class="/)){  // 有class属性则在里面添加hcselector-icon
                 var arr = icon.split('class="');
@@ -198,10 +199,10 @@ Hcselect.prototype.views = function(){
                 arr2[0] += ' class="hcselector-icon"';
                 icon = '<'+arr2.join('');
             }
-            html = '<div class="hcselector-wrapper"><input '+readonly+' type="text" name="hcselector-input" class="hcselector-input">'+icon+'</div>';
+            html = '<div class="hcselector-wrapper"><input '+readonly+' value='+this.option.value+' type="text" name="hcselector-input" class="hcselector-input">'+icon+'</div>';
         }
     }else{
-        var html = '<div class="hcselector-wrapper"><input '+readonly+' type="text" name="hcselector-input" class="hcselector-input hcselector-input-full"></div>';
+        var html = '<div class="hcselector-wrapper"><input '+readonly+' value='+this.option.value+' type="text" name="hcselector-input" class="hcselector-input hcselector-input-full"></div>';
     }
     return html;
 }
