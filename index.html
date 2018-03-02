@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./css/hcselect.css">
+	<style type="text/css">
+		.wrapper{
+			height: 100px;
+			background: burlywood;
+		}
+		#test{
+			width: 10vw;
+			height: 5vh;
+			border: 1px solid #000;
+			position: absolute;
+			left: 100px;
+			top: 20%;
+		}
+	</style>
+	<script src="./js/hcselect.js"></script>
+</head>
+<body>
+	
+	<div id="test"></div>
+
+	<script type="text/javascript">
+		var data = ['苹果','香蕉','梨子'];
+		//var data = [{name:'hc',value:'1'},{name:'hucong',value:'10000'}]
+    	new Hcselect({
+    		id:'test',
+    		data:data,
+    		//icon:'./1.png',
+    		//icon:'<i class="fa fa-search"></i>',
+    		//up:true,
+    		iconFn:function(params){
+    			console.log('click icon!',params);
+    			if(params.show){
+    				this.hideItems();
+    			}else{
+    				this.showItems();
+    			}
+    		},
+    		inputFn:function(params){
+    			console.log('click input!',params);
+    			if(params.show){
+    				this.hideItems();
+    			}else{
+    				this.showItems();
+    			}
+    		},
+    		itemFn:function(params){
+    			console.log('click item!',params);
+    			params.inputEl.value = params.data;
+    		}
+    	});
+
+
+
+	</script>
+
+</body>
+</html>
