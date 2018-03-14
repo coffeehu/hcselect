@@ -33,6 +33,21 @@
 
 
 var domUtil = {
+    addcss:function(){
+        var id = 'hc-select-css';
+        if(document.getElementById(id)) return;
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        var path = this.getPath();
+        link.rel = 'stylesheet';
+        link.href = path + '../css/hcselect.css';
+        link.id = id;
+        head.appendChild(link);
+    },
+    getPath:function(){
+        var jsPath = document.currentScript.src;
+        return jsPath.substring(0,jsPath.lastIndexOf('/')+1);
+    },
     getWidthOrHeight:function(el,name,extra){
         var styles = window.getComputedStyle(el);
         var val = null;
@@ -131,6 +146,8 @@ var domUtil = {
         el.addEventListener(type,fn,false);
     }
 }
+
+domUtil.addcss();
 
 var Hcsel = exports.Hcselect = function(option){
     this.el = null; // 容器
