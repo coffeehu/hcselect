@@ -178,7 +178,6 @@ Hcselect.prototype.checkElement = function(){
     if(this.el){
         this.createContent();
         this.initItems(this.option.data);
-        this.initPosition();
         this.initEvents();
     }else{
         console.log("Selector error: error id!")
@@ -261,7 +260,8 @@ Hcselect.prototype.initEvents = function(){
     // 事件设置，弹出内容框
     this.el.onclick = function(evt){
         var tar = evt.target;
-        console.log(tar)
+
+        _this.initPosition();
 
         if( domUtil.hasClass(tar,'hcselector-input') ){
             var params = {
