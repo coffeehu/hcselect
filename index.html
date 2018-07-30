@@ -2,61 +2,64 @@
 <html>
 <head>
 	<title></title>
+    <meta charset="utf-8">
 	<style type="text/css">
 		.wrapper{
 			height: 100px;
 			background: burlywood;
 		}
+        #test2,
 		#test{
-			width: 10vw;
+			width: 200px;
 			height: 5vh;
 			border: 1px solid #000;
 			position: absolute;
 			left: 100px;
 			top: 20%;
 		}
+        #test2 {
+            width: 25vw;
+            top: 40%;
+            left: 300px;
+        }
 	</style>
-	<script src="./js/hcselect.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/hselector.css">
+    <script src="./js/hselector.js"></script>
 </head>
 <body>
 	
-	<div id="test"></div>
+    <input type="text" id="test" name="">
 
-	<script type="text/javascript">
-		var data = ['苹果','香蕉','梨子'];
-		//var data = [{name:'hc',value:'1'},{name:'hucong',value:'10000'}]
-    	new Hcselect({
-    		id:'test',
-    		data:data,
-    		//icon:'./1.png',
-    		//icon:'<i class="fa fa-search"></i>',
-    		//up:true,
-            value:data[0],
-    		iconFn:function(params){
-    			console.log('click icon!',params);
-    			if(params.show){
-    				this.hideItems();
-    			}else{
-    				this.showItems();
-    			}
-    		},
-    		inputFn:function(params){
-    			console.log('click input!',params);
-    			if(params.show){
-    				this.hideItems();
-    			}else{
-    				this.showItems();
-    			}
-    		},
-    		itemFn:function(params){
-    			console.log('click item!',params);
-    			params.inputEl.value = params.data;
-    		}
-    	});
+    <input type="text" id="test2" name="">
+
+<script type="text/javascript">
+	var data = ['苹果','香蕉','梨子','苹果','香蕉','梨子','苹果','香蕉','梨子'];
+    hselector.init({
+        id: 'test',
+        data: data,
+        clickCallback: function(value) {
+            console.log('clickCallback----', value)
+        }
+    })
+
+    var data2 = [
+        { label: '苹果', value:'pg' },
+        { label: '香蕉', value:'xj' },
+        { label: '梨子', value:'lz' }
+    ];
+    hselector.init({
+        id: 'test2',
+        data: data2,
+        label: 'label',
+        value: 'value',
+        clickCallback: function(value) {
+            console.log('clickCallback----', value)
+        }
+    })
 
 
 
-	</script>
 
+</script>
 </body>
 </html>
