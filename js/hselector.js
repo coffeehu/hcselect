@@ -330,7 +330,7 @@ function Popper(reference, popper, options){
 	}.bind(this));
 	this._popper.setAttribute('x-placement', this._options.placement);
 	this.position = this._getPosition(reference);
-	this.update();
+	//this.update();
 	return this;
 }
 Popper.prototype._getPosition = function(reference){
@@ -421,10 +421,13 @@ function HSelector(options) {
 	this.setCurrentValue(options);
 
 	this.popper = this.createPopper();
-	this.initListener();
+
 	this.popperInstance = new Popper(this.reference, this.popper, { placement: 'bottom' });
-	popperInstances.push(this.popperInstance);
 	this.popperInstance.reference = this.reference;
+	popperInstances.push(this.popperInstance);
+
+	this.initListener();
+
 	window.onresize = function() {
 		for(var i=0,l=popperInstances.length; i<l; i++) {
 			var referenceWidth = utils.outWidth(popperInstances[i].reference);
@@ -489,6 +492,7 @@ HSelector.prototype.initScrollBar = function(popper) {
 HSelector.prototype.initListener = function() {
 	var that = this;
 	utils.addHandler(that.reference, 'focus', function() {
+		that.popperInstance.update();
 		that.showTips(that.popper);
 		that.scrollWrapper.scrollTop = 0;
 	});
