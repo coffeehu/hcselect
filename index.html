@@ -37,6 +37,7 @@
     hselector.init({
         id: 'test',
         data: data,
+        currentValue: '1',
         clickCallback: function(value) {
             console.log('clickCallback----', value)
         }
@@ -52,6 +53,7 @@
         data: data2,
         label: 'label',
         value: 'value',
+        currentValue: data2[0],
         clickCallback: function(value) {
             console.log('clickCallback----', value)
         }

@@ -414,8 +414,12 @@ var hselector = window.hselector = {
 }
 
 function HSelector(options) {
+	this.currentValue = options.currentValue;
 	this.options = options;
 	this.reference = document.getElementById(options.id);
+
+	this.setCurrentValue(options);
+
 	this.popper = this.createPopper();
 	this.initListener();
 	this.popperInstance = new Popper(this.reference, this.popper, { placement: 'bottom' });
@@ -425,6 +429,16 @@ function HSelector(options) {
 		for(var i=0,l=popperInstances.length; i<l; i++) {
 			var referenceWidth = utils.outWidth(popperInstances[i].reference);
 			popperInstances[i].update(referenceWidth);	
+		}
+	}
+}
+
+HSelector.prototype.setCurrentValue = function(options) {
+	if(this.currentValue) {
+		if(options.label) {
+			this.reference.value = this.currentValue[options.label];
+		}else {
+			this.reference.value = this.currentValue;
 		}
 	}
 }
@@ -499,6 +513,7 @@ HSelector.prototype.initListener = function() {
 				if(typeof that.options.clickCallback === 'function') {
 					that.options.clickCallback(realValue, that);
 				}
+				that.currentValue = realValue;
 			}
 		}(i);
 	}
