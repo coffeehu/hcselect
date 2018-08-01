@@ -452,12 +452,12 @@ HSelector.prototype.createPopper = function() {
 	var html = '<div class="scrollbar"><div class="dropdown-wrapper"><ul class="dropdown-list">';
 	if(this.options.label) {
 		for(var i=0,l=this.options.data.length; i<l; i++) {
-			let item = this.options.data[i];
+			var item = this.options.data[i];
 			html += '<li class="dropdown-item"><span>'+item[this.options.label]+'</span></li>';
 		}	
 	}else {
 		for(var i=0,l=this.options.data.length; i<l; i++) {
-			let item = this.options.data[i];
+			var item = this.options.data[i];
 			html += '<li class="dropdown-item"><span>'+item+'</span></li>';
 		}
 	}
